@@ -1,12 +1,8 @@
-<?php
-/*
-* Template Name: Главная
-*/
-get_header(); ?>
+<?php get_header(); ?>
 <div class="main-content">
     <div class="content-wrapper">
         <div class="content">
-            <h1 class="title-page"><?php the_title(); ?></h1>
+            <h1 class="title-page">Последние новости и акции из мира туризма</h1>
             <div class="posts-list">
                 <!-- post-mini-->
                 <div class="post-wrap">
