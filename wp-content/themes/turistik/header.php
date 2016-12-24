@@ -16,16 +16,18 @@
         <div class="top-header">
             <div class="top-header__wrap">
                 <div class="logotype-block">
-                    <div class="logo-wrap"><a href="/"><img src="../../../img/logo.svg" alt="Логотип" class="logo-wrap__logo-img"></a></div>
+                    <div class="logo-wrap">
+                        <a href="/">
+                            <img src="<?php echo get_field('logo', 'option'); ?>" alt="Логотип" class="logo-wrap__logo-img">
+                        </a>
+                    </div>
                 </div>
                 <nav class="main-navigation">
-                    <ul class="nav-list">
-                        <li class="nav-list__nav-item"><a href="#" class="nav-list__nav-item__nav-link">Главная</a></li>
-                        <li class="nav-list__nav-item"><a href="#" class="nav-list__nav-item__nav-link">Полезная информация</a></li>
-                        <li class="nav-list__nav-item"><a href="#" class="nav-list__nav-item__nav-link">Последние акции</a></li>
-                        <li class="nav-list__nav-item"><a href="#" class="nav-list__nav-item__nav-link">О сервисе</a></li>
-                        <li class="nav-list__nav-item"><a href="#" class="nav-list__nav-item__nav-link">Новости</a></li>
-                    </ul>
+                    <?php wp_nav_menu([
+                        'container' => false,
+                        'menu_class'    => 'nav-list',
+                        'walker'    => new MenuWalker()
+                    ]); ?>
                 </nav>
             </div>
         </div>

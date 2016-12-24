@@ -2,76 +2,57 @@
 <div class="main-content">
     <div class="content-wrapper">
         <div class="content">
-            <h1 class="title-page">Последние новости и акции из мира туризма</h1>
+            <h1 class="title-page"><?php the_title(); ?></h1>
             <div class="posts-list">
+                <?php
+                $args = [
+                    'post_type' => ['post', 'discounts'],
+                    'posts_per_page' => 3,
+                    'paged' => get_query_var('paged')
+                ];
+                $posts = query_posts($args);
+                ?>
+                <?php if( have_posts()) : while ( have_posts()) : the_post(); ?>
                 <!-- post-mini-->
                 <div class="post-wrap">
-                    <div class="post-thumbnail"><img src="img/post_thumb/thumb_1.jpg" alt="Image поста" class="post-thumbnail__image"></div>
+                    <div class="post-thumbnail"><img src="<?php echo get_pic($post->ID); ?>" alt="Image поста" class="post-thumbnail__image"></div>
                     <div class="post-content">
                         <div class="post-content__post-info">
-                            <div class="post-date">29.07.2016</div>
+                            <div class="post-date"><?php the_date(); ?></div>
                         </div>
                         <div class="post-content__post-text">
                             <div class="post-title">
-                                В германии завершается распродажа железнодорожных билетов от 19
-                                евро
+                                <?php the_title(); ?>
                             </div>
-                            <p>
-                                Идейные соображения высшего порядка, а также сложившаяся структура организации
-                                обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений
-                                развития...
-                            </p>
+                            <?php the_excerpt(); ?>
                         </div>
-                        <div class="post-content__post-control"><a href="#" class="btn-read-post">Читать далее >></a></div>
+                        <div class="post-content__post-control">
+                            <a href="<?php the_permalink(); ?>" class="btn-read-post">Читать далее >></a>
+                        </div>
                     </div>
                 </div>
+                <?php endwhile; else: ?>
+                    Ничего не найдено
+                <?php endif; ?>
                 <!-- post-mini_end-->
                 <!-- post-mini-->
-                <div class="post-wrap">
-                    <div class="post-thumbnail"><img src="img/post_thumb/thumb_2.jpg" alt="Image поста" class="post-thumbnail__image"></div>
-                    <div class="post-content">
-                        <div class="post-content__post-info">
-                            <div class="post-date">29.07.2016</div>
-                        </div>
-                        <div class="post-content__post-text">
-                            <div class="post-title">
-                                В германии завершается распродажа железнодорожных билетов от 19
-                                евро
-                            </div>
-                            <p>
-                                Идейные соображения высшего порядка, а также сложившаяся структура организации
-                                обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений
-                                развития...
-                            </p>
-                        </div>
-                        <div class="post-content__post-control"><a href="#" class="btn-read-post">Читать далее >></a></div>
-                    </div>
-                </div>
-                <!-- post-mini_end-->
-                <!-- post-mini-->
-                <div class="post-wrap">
-                    <div class="post-thumbnail"><img src="img/post_thumb/thumb_3.jpg" alt="Image поста" class="post-thumbnail__image"></div>
-                    <div class="post-content">
-                        <div class="post-content__post-info">
-                            <div class="post-date">29.07.2016</div>
-                        </div>
-                        <div class="post-content__post-text">
-                            <div class="post-title">
-                                В германии завершается распродажа железнодорожных билетов от 19
-                                евро
-                            </div>
-                            <p>
-                                Идейные соображения высшего порядка, а также сложившаяся структура организации
-                                обеспечивает широкому кругу (специалистов) участие в формировании дальнейших направлений
-                                развития...
-                            </p>
-                        </div>
-                        <div class="post-content__post-control"><a href="#" class="btn-read-post">Читать далее >></a></div>
-                    </div>
-                </div>
-                <!-- post-mini_end-->
             </div>
-            <div class="pagenavi-post-wrap"><a href="#" class="pagenavi-post__prev-postlink"><i class="icon icon-angle-double-left"></i></a><span class="pagenavi-post__current">1</span><a href="#" class="pagenavi-post__page">2</a><a href="#" class="pagenavi-post__page">3</a><a href="#" class="pagenavi-post__page">...</a><a href="#" class="pagenavi-post__page">10</a><a href="#" class="pagenavi-post__next-postlink"><i class="icon icon-angle-double-right"></i></a></div>
+
+            <?php
+            $args = array(
+                'show_all'     => false, // показаны все страницы участвующие в пагинации
+                'end_size'     => 1,     // количество страниц на концах
+                'mid_size'     => 1,     // количество страниц вокруг текущей
+                'prev_next'    => true,  // выводить ли боковые ссылки "предыдущая/следующая страница".
+                'prev_text'    => __('«'),
+                'next_text'    => __('»'),
+                'add_args'     => false, // Массив аргументов (переменных запроса), которые нужно добавить к ссылкам.
+                'add_fragment' => '',     // Текст который добавиться ко всем ссылкам.
+                'screen_reader_text' => __( ' ' ),
+            );
+            the_posts_pagination($args);
+            ?>
+
         </div>
         <!-- sidebar-->
         <?php get_template_part('parts/sidebar'); ?>
