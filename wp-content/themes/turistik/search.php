@@ -1,5 +1,4 @@
-<?php
-get_header(); ?>
+<?php get_header(); ?>
     <div class="main-content">
         <div class="content-wrapper">
             <div class="content">
