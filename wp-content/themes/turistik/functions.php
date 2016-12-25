@@ -29,6 +29,7 @@ class MenuWalker extends Walker_Nav_Menu
         $output .= '<li class="nav-list__nav-item '.$active.'"><a href="' . $object->url . '" class="nav-list__nav-item__nav-link">
        ' . $object->title . '</a>
         </li>';
+
     }
 
 
