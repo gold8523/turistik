@@ -16,6 +16,7 @@
                     'include'                   => null,
                     'topic_count_text_callback' => '',
                     'link'                      => 'view',
+                    'taxonomy'                  => 'post_tag',
                     'echo'                      => false,
                     'child_of'                  => null,
                 );
@@ -37,6 +38,14 @@
             <ul class="category-list">
                 <?php wp_list_categories("title_li="); ?>
             </ul>
+        </div>
+    </div>
+    <div class="sidebar__sidebar-item">
+        <div class="sidebar-item__title">Календарь</div>
+        <div class="sidebar-item__content">
+            <?php
+            $initial = false;
+            get_calendar( $initial ); ?>
         </div>
     </div>
 </div>

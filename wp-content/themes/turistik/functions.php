@@ -15,6 +15,7 @@ function my_navigation_template( $template, $class ){
 	';
 }
 add_theme_support('menus');
+add_theme_support( 'post-thumbnails' );
 
 class MenuWalker extends Walker_Nav_Menu
 {
@@ -34,7 +35,29 @@ class MenuWalker extends Walker_Nav_Menu
 
 
 }
-acf_add_options_page('Опции');
+
+class BotMenuWalker extends Walker_Nav_Menu
+{
+
+    function start_el(&$output, $object, $depth = 3, $args = array(), $current_object_id = 0)
+    {
+        if ($object->object_id == get_the_ID()) {
+            $active = "main-nav__link_active";
+        } else {
+            $active = "";
+        }
+        $output .= '<li class="b-menu__list__item '.$active.'"><a href="' . $object->url . '" class="b-menu__list__item__link">
+       ' . $object->title . '</a>
+        </li>';
+
+    }
+
+
+}
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page('Опции');
+}
+
 
 function cc_mime_types($mimes) {
     $mimes['svg'] = 'image/svg+xml';

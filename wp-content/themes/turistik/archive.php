@@ -3,14 +3,13 @@ get_header(); ?>
     <div class="main-content">
         <div class="content-wrapper">
             <div class="content">
-                <h1 class="title-page"><?php the_title(); ?></h1>
+                <?php the_archive_title( '<h1 class="page-title">', '</h1>' ); ?>
                 <div class="posts-list">
-                    <?php if( have_posts()) : while ( have_posts()) : the_post(); ?>
-                        <div class="post-wrap">
-                            <div class="post-thumbnail">
 
-                                <img src="<?php echo get_pic($post->ID); ?>" alt="Image поста" class="post-thumbnail__image">
-                            </div>
+                    <?php if( have_posts()) : while ( have_posts()) : the_post(); ?>
+                        <!-- post-mini-->
+                        <div class="post-wrap">
+                            <div class="post-thumbnail"><img src="<?php echo get_pic($post->ID); ?>" alt="Image поста" class="post-thumbnail__image"></div>
                             <div class="post-content">
                                 <div class="post-content__post-info">
                                     <div class="post-date"><?php the_date(); ?></div>
@@ -22,13 +21,14 @@ get_header(); ?>
                                     <?php the_excerpt(); ?>
                                 </div>
                                 <div class="post-content__post-control">
-                                    <a href="<?php the_permalink(); ?>"
-                                       class="btn-read-post">Читать далее >></a></div>
+                                    <a href="<?php the_permalink(); ?>" class="btn-read-post">Читать далее >></a>
+                                </div>
                             </div>
                         </div>
                     <?php endwhile; else: ?>
                         Ничего не найдено
-                    <?php endif; ?>
+                    <?php endif; ?>                    <!-- post-mini_end-->
+                    <!-- post-mini-->
                 </div>
 
                 <?php
@@ -44,6 +44,8 @@ get_header(); ?>
                     'screen_reader_text' => __( ' ' ),
                 );
                 the_posts_pagination($args);
+                wp_reset_query();
+                wp_reset_postdata();
                 ?>
             </div>
             <!-- sidebar-->

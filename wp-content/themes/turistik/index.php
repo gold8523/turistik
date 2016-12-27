@@ -1,4 +1,8 @@
-<?php get_header(); ?>
+<?php
+/*
+* Template Name: Главная
+*/
+get_header(); ?>
 <div class="main-content">
     <div class="content-wrapper">
         <div class="content">
@@ -6,8 +10,8 @@
             <div class="posts-list">
                 <?php
                 $args = [
-                    'post_type' => ['post', 'discounts'],
-                    'posts_per_page' => 3,
+                    'post_type' => ['post', 'discount'],
+                    'posts_per_page' => 10,
                     'paged' => get_query_var('paged')
                 ];
                 $posts = query_posts($args);
@@ -51,6 +55,8 @@
                 'screen_reader_text' => __( ' ' ),
             );
             the_posts_pagination($args);
+            wp_reset_query();
+            wp_reset_postdata();
             ?>
 
         </div>

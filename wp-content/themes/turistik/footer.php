@@ -2,10 +2,11 @@
     <div class="content-footer">
         <div class="bottom-menu">
             <ul class="b-menu__list">
-                <li class="b-menu__list__item"><a href="#" class="b-menu__list__item__link">Главная</a></li>
-                <li class="b-menu__list__item"><a href="#" class="b-menu__list__item__link">Полезная информация</a></li>
-                <li class="b-menu__list__item"><a href="#" class="b-menu__list__item__link">Последние акции</a></li>
-                <li class="b-menu__list__item"><a href="#" class="b-menu__list__item__link">О сервисе</a></li>
+                <?php wp_nav_menu([
+                    'container' => false,
+                    'menu_class'    => 'b-menu__list',
+                    'walker'    => new BotMenuWalker()
+                ]); ?>
             </ul>
         </div>
         <div class="copyright-wrap">
