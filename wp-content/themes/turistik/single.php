@@ -26,7 +26,8 @@
                             <div class="preview-article__img"><img src="<?php echo get_pic($prev->ID); ?>" class="preview-article__image"></div>
                             <div class="preview-article__content">
                                 <div class="preview-article__info"><a href="#" class="post-date"><?php echo $prev->post_date; ?></a></div>
-                                <div class="preview-article__text"><?php echo $prev->post_title; ?></div>
+                                <div class="preview-article__text"><?php echo $prev->post_title; ?><br>
+                                    <?php the_excerpt(); ?></div>
                             </div>
                         </div>
                     </div>
@@ -35,10 +36,11 @@
                     <?php if (!empty($next)) :?>
                     <div class="article-pagination__block pagination-prev-right"><a href="<?php echo get_permalink($next->ID); ?>" class="article-pagination__link">Сдедующая статья<i class="icon icon-angle-double-right"></i></a>
                         <div class="wrap-pagination-preview pagination-prev-right">
-                            <div class="preview-article__img"><img src="<?php echo get_pic($prev->ID); ?>" class="preview-article__image"></div>
+                            <div class="preview-article__img"><img src="<?php echo get_pic($next->ID); ?>" class="preview-article__image"></div>
                             <div class="preview-article__content">
-                                <div class="preview-article__info"><a href="#" class="post-date"><?php echo $prev->post_date; ?></a></div>
-                                <div class="preview-article__text"><?php echo $prev->post_title; ?></div>
+                                <div class="preview-article__info"><a href="#" class="post-date"><?php echo $next->post_date; ?></a></div>
+                                <div class="preview-article__text"><?php echo $next->post_title; ?><br>
+                                <?php the_excerpt(); ?></div>
                             </div>
                         </div>
                     </div>

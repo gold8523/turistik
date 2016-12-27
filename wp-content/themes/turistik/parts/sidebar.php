@@ -16,7 +16,6 @@
                     'include'                   => null,
                     'topic_count_text_callback' => '',
                     'link'                      => 'view',
-                    'taxonomy'                  => 'post_tag',
                     'echo'                      => false,
                     'child_of'                  => null,
                 );

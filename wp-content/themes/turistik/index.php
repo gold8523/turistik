@@ -10,8 +10,8 @@ get_header(); ?>
             <div class="posts-list">
                 <?php
                 $args = [
-                    'post_type' => ['post', 'discount'],
-                    'posts_per_page' => 10,
+                    'post_type' => ['post', 'sale'],
+                    'posts_per_page' => 3,
                     'paged' => get_query_var('paged')
                 ];
                 $posts = query_posts($args);
